@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="gTV-IL-0wX" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="191" height="168"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="191" height="168"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="te6-ac-zCk">
+                        <rect key="frame" x="0.0" y="20" width="191" height="91"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="91" id="UxV-RZ-5S3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLg-r8-9n4">
+                        <rect key="frame" x="0.0" y="112" width="191" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-x5-U9w">
+                        <rect key="frame" x="0.0" y="0.0" width="191" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZi-WQ-k1E">
+                        <rect key="frame" x="0.0" y="142" width="191" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="trailing" secondItem="YLg-r8-9n4" secondAttribute="trailing" id="2VU-sg-4lq"/>
+                <constraint firstItem="YLg-r8-9n4" firstAttribute="top" secondItem="Ele-x5-U9w" secondAttribute="bottom" constant="91" id="3sb-sB-R2e"/>
+                <constraint firstAttribute="trailing" secondItem="te6-ac-zCk" secondAttribute="trailing" id="7Hv-nC-ez4"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IM2-nD-wRd"/>
+                <constraint firstItem="YLg-r8-9n4" firstAttribute="top" secondItem="te6-ac-zCk" secondAttribute="bottom" constant="1" id="O1w-eP-ahu"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="trailing" secondItem="Ele-x5-U9w" secondAttribute="trailing" id="cPE-jB-oeX"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="leading" secondItem="qZi-WQ-k1E" secondAttribute="leading" id="fJa-Fz-34s"/>
+                <constraint firstItem="qZi-WQ-k1E" firstAttribute="top" secondItem="YLg-r8-9n4" secondAttribute="bottom" constant="9" id="g45-Zq-ZBu"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="leading" secondItem="YLg-r8-9n4" secondAttribute="leading" id="gJf-zL-glU"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="leading" secondItem="Ele-x5-U9w" secondAttribute="leading" id="j51-xg-K7L"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="ydW-qU-PaV"/>
+                <constraint firstItem="te6-ac-zCk" firstAttribute="trailing" secondItem="qZi-WQ-k1E" secondAttribute="trailing" id="zNl-ay-i81"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="191" height="168"/>
+            <connections>
+                <outlet property="date" destination="Ele-x5-U9w" id="GrL-aC-27y"/>
+                <outlet property="high" destination="YLg-r8-9n4" id="w8S-6z-XpF"/>
+                <outlet property="low" destination="qZi-WQ-k1E" id="0us-qx-4z0"/>
+                <outlet property="weatherImage" destination="te6-ac-zCk" id="cwR-rb-ks0"/>
+            </connections>
+            <point key="canvasLocation" x="239.85507246376812" y="131.25"/>
+        </collectionViewCell>
+    </objects>
+</document>
