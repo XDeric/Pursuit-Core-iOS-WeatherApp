@@ -18,9 +18,8 @@ final class ImageManager {
     func getImage(search: String ,completionHandler: @escaping (Result<[Hits], AppError>) -> () ) {
         
         //let searchNameForatted = search.replacingOccurrences(of: " ", with: "-")
-        
         let stringURL = "https://pixabay.com/api/?key=\(Secret.pixaKey)&q=\(search)"
-        
+        print(stringURL)
         guard let url = URL(string: stringURL) else {
             completionHandler(.failure(.badURL))
             return

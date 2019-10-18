@@ -9,7 +9,8 @@
 import UIKit
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var pixaImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

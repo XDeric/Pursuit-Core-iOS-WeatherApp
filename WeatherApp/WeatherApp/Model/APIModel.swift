@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 //PIXA-------------------------------------------------------------------------
 
 struct Total: Codable {
@@ -19,10 +20,12 @@ struct Hits: Codable {
     let tags: String
     let likes: Int
 }
-
-
+//MARK: Zipcode Locality
+struct City: Codable{
+    var city: String
+    let skyInfo: Sky
+}
 //Sky----------------------------------------------------------------------------
-
 struct Sky: Codable{
     let latitude, longitude : Double
     let daily: Daily
@@ -34,6 +37,8 @@ struct Daily: Codable {
 
 struct DailyData: Codable {
     let time: Int
+    let sunriseTime, sunsetTime: Int
+    let windGust: Double
     let temperatureLow: Double
     let temperatureHigh: Double
     let summary: String
@@ -48,3 +53,8 @@ struct DailyData: Codable {
 //case partlyCloudyNight = "partly-cloudy-night"
 //case rain = "rain"
 //}
+
+struct Favorite: Codable {
+    //let name: String
+    let image: Data
+}

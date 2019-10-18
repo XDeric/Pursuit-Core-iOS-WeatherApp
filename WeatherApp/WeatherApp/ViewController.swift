@@ -8,8 +8,23 @@ class ViewController: UIViewController {
             collectionView.reloadData()
         }
     }
-    var zipcode = "10008"
-    
+    var zipcode:String = ""{
+        didSet{
+            loadData()
+            UserDefaults.standard.set(zipcode, forKey: "zipcode")
+            collectionView.reloadData()
+            
+        }
+    }
+  
+    var cityName: City? {
+        didSet {
+            collectionView.reloadData()
+            if let name = cityName?.city {
+                label.text = "Weather at: \(name)"
+            }
+        }
+    }
     
     let layout = UICollectionViewFlowLayout()
     lazy var collectionView: UICollectionView = {
@@ -25,7 +40,7 @@ class ViewController: UIViewController {
     }()
     
     
-    var searchText: UITextField = {
+    var textField: UITextField = {
         let text = UITextField(frame: CGRect(x: 20 , y: 400, width: 374, height: 34))
         text.placeholder = "Enter ZipCode"
         text.backgroundColor = .white
@@ -34,33 +49,33 @@ class ViewController: UIViewController {
     
     var label: UILabel = {
         var titleLabel = UILabel(frame: CGRect(x: 20, y: 350, width: 374, height: 34))
-        titleLabel.text = "test"
         titleLabel.backgroundColor = .white
+//        titleLabel.text =  "Weather at"
         return titleLabel
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
         self.view.addSubview(collectionView)
-        self.view.addSubview(searchText)
+        self.view.addSubview(textField)
+        textField.delegate = self
         self.view.addSubview(label)
         self.view.backgroundColor = .cyan
+        zipcode = UserDefaults.standard.value(forKey: "zipcode") as! String
+        
+        
         // Do any additional setup after loading the view.
     }
     
     
     func loadData(){
         Location.manager.getWeather(zipcode: zipcode) { (result) in
-        
                 switch result {
                 case .failure(let error):
                     print(error)
                 case .success(let weather):
-                     
-                    self.weather = weather
-                    
-                
+                    self.weather = weather.skyInfo.daily.data
+                    self.cityName = weather
             }
         }
     }
@@ -70,7 +85,8 @@ class ViewController: UIViewController {
         
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate  {
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate  {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weather.count
     }
@@ -89,8 +105,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         
         cell.weatherImage.image = UIImage(named: weather[indexPath.row].icon)
         cell.date.text = dateString
-        cell.high.text = "High: \(weather[indexPath.row].temperatureHigh)"
-        cell.low.text = "Low: \(weather[indexPath.row].temperatureLow)"
+        cell.high.text = "High: \(weather[indexPath.row].temperatureHigh) F°"
+        cell.low.text = "Low: \(weather[indexPath.row].temperatureLow) F°"
         
         return cell
     }
@@ -99,9 +115,17 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         let forecast = weather[indexPath.row]
         let dVC = WeatherDetailViewController()
         dVC.weatherData = forecast
+        dVC.cityInfo = cityName
         self.navigationController?.pushViewController(dVC, animated: true)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        zipcode = textField.text ?? "10008"
+        print(textField.text)
+        textField.resignFirstResponder()
 
+        return true
+    }
     
     
 }
