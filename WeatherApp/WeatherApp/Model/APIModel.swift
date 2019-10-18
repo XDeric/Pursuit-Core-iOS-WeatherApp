@@ -19,6 +19,17 @@ struct Hits: Codable {
     let largeImageURL: String
     let tags: String
     let likes: Int
+    
+    static func getPic(from jsonData: Data) -> [Hits]{
+        do{
+            let picWraper = try JSONDecoder().decode(Total.self, from: jsonData)
+            return picWraper.hits
+        }catch{
+            dump(error)
+            return[]
+        }
+    }
+    
 }
 //MARK: Zipcode Locality
 struct City: Codable{
